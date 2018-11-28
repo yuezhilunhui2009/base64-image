@@ -1,6 +1,6 @@
 {
-  "name": "base64-image-tool",
-  "version": "1.0.0",
+  "name": "image2base64js",
+  "version": "1.0.1",
   "description": "",
   "bin": {
     "base64image": "bin/base64image"
@@ -8,7 +8,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuezhilunhui2009/base64-image.git"
+  },
+  "author": "yuezhilunhui2009",
   "license": "MIT",
   "dependencies": {
     "base64-img": "^1.0.4"
