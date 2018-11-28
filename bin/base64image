@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const base64Img = require('base64-img')
+const path = require('path')
+
+// 扫描命令执行的目录
+const dir = process.cwd()
+const walk = require('../utils').walk
+
+// 转换的图片文件类型
+const includeImageExt = /(\.png|\.jpg|\.jpeg|\.svg|\.webp|\.bmp)$/
+// 忽略的路径
+const ignorePath = /^(\..*|node_modules|dist|test)/
+const allFiles = walk(dir, ignorePath)
+
+allFiles
+    .filter(filePath => {
+        const ext = path.extname(filePath)
+        return includeImageExt.test(ext)
+    })
+    .map(filePath => {
+        const dir = path.dirname(filePath)
+        const ext = path.extname(filePath)
+        const base = path.basename(filePath)
+
+        return {
+            taskName: filePath,
+            newFile: path.resolve(dir, base.replace(ext, '.js')),
+            content: base64Img.base64Sync(filePath)
+        }
+    })
+    .forEach(writeTask => {
+        console.log(`create ${writeTask.newFile}`)
+        fs.writeFileSync(writeTask.newFile, `export default "${writeTask.content}"`)
+    })

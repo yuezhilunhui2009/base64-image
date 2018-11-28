@@ -1,0 +1,16 @@
+{
+  "name": "base64-image",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "base64image": "bin/base64image"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "base64-img": "^1.0.4"
+  }
+}
